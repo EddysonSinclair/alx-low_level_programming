@@ -6,8 +6,7 @@
 *
 * Return:void
 */
-char print_alphabet(void);
-int main() 
+char print_alphabet(void); 
 {
 	char alphabet = 'a';
 		while (alphabet <= 'z');
