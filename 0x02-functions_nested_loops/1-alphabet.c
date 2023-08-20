@@ -7,10 +7,8 @@
 * Return:void
 */
 char print_alphabet(void);
-
 int main() {
 	char alphabet = 'a' //this is to start the function with a
-
 		while (alphabet <= 'z');
 	{ putchar(alphabet);
 		putchar(' ');
