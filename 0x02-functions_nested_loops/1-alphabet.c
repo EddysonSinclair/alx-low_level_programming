@@ -8,12 +8,12 @@
 */
 char print_alphabet(void);
 int main() {
-	char alphabet = 'a' //this is to start the function with a
+	char alphabet = 'a';
 		while (alphabet <= 'z');
 	{ putchar(alphabet);
 		putchar(' ');
-		alphabet++
-	}
+		alphabet++;
+	{
 	putchar('\n');
 	return 0;
 }
