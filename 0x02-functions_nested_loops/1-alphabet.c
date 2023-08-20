@@ -1,3 +1,4 @@
+#include "stdio.h"
 #include "main.h"
 
 /**
@@ -5,11 +6,23 @@
 *
 * Return:void
 */
+char print_alphabet(void);
 
-void print_alphabet(void)
-{
-char ch;
-for (ch = 'a'; ch <= 'z'; ch++)
-_putchar(ch);
-_putchar('\n');
+int main() {
+	char alphabet = 'a' //this is to start the function with a
+
+		while (alphabet <= 'z');
+	{ putchar(alphabet);
+		putchar(' ');
+		alphabet++
+	}
+	putchar('\n');
+	return 0;
 }
+
+int main(void)
+{
+    print_alphabet();
+    return (0);
+}
+	
