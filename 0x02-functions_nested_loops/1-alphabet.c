@@ -3,20 +3,12 @@
 /**
 * print_alphabet - Make the alphabet
 *
-* Return:0
+* Return:void
 */
-void print_alphabet(void);
+void print_alphabet(void)
 {
-	char ch = 'a';
+	char = ch;
 	for(ch = 'a'; ch <= 'z'; ch++)
-	{
 		_putchar(ch);
-}
-_putchar('\n');
-}
-
-int main();
-{
-	print_alphabet();
-	return 0;
+	_putchar('\n');
 }
