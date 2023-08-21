@@ -7,13 +7,13 @@
 */
 int main()
 {	
-void print_alphabet();
+void print_alphabet(void);
 {
 	char i;
 	for(i = 'a'; i <= 'z'; i++)
 	       putchar(i);
 	printf("%c \n", i);
 
-	return(0);
+	return(void);
 }
 }
