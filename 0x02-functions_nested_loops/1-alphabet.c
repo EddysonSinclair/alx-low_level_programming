@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 /**
 * print_alphabet - Make the alphabet
 *
@@ -9,6 +10,6 @@ int main(void){
 	char ch;
 	for(ch = 'a'; ch <= 'z'; ch++)
 		putchar(ch);
-	return(void);
-	putchar('\n');
+	printf("%c \n", ch);
+}
 }
