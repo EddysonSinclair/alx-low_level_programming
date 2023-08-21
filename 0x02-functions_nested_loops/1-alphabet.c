@@ -3,7 +3,7 @@
 /**
 * print_alphabet - Make the alphabet
 *
-* Return:void
+* Return:0
 */
 int main()
 {
