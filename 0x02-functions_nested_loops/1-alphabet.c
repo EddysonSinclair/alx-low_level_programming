@@ -5,13 +5,15 @@
 *
 * Return:void
 */
-void print_alphabet(void);
+int main()
 {
-int main(void){
-	char ch;
-	for(ch = 'a'; ch <= 'z'; ch++)
-		putchar(ch);
-	printf("%c \n", ch);
-	return void;
-}
+
+    // Get the character to be written
+    char ch = 'a';
+
+    // Write the Character to stdout
+    for (ch = 'a'; ch <= 'z'; ch++)
+        putchar(ch);
+
+    return (0);
 }
