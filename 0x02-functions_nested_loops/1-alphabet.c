@@ -8,9 +8,15 @@
 
 char print_alphabet();
 {
-	char ch;
-	for (ch = 'a'; ch <= 'z'; ch++)
-		_putchar(ch);
-	return 0;
-	_putchar('\n');
+char ch;
+for (ch = 'a'; ch <= 'z'; ch++)
+	_putchar(ch);
+return 0;
+_putchar('\n');
+}
+
+
+char ch()
+{
+return ch;
 }
