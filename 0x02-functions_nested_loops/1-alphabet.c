@@ -6,12 +6,11 @@
 * Return:void
 */
 
-char print_alphabet();
-{
+char print_alphabet();{
 char ch;
 for (ch = 'a'; ch <= 'z'; ch++)
 	_putchar(ch);
-return 0;
+return ch;
 _putchar('\n');
 }
 
