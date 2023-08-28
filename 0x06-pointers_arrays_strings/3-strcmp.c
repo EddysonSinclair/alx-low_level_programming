@@ -1,27 +1,24 @@
 #include "main.h"
-
 /**
- *_strncpy - a function that copies a string
- * @src: The source of strings
- * @dest: The destination of the string
- * @n: The length of int
- * written by cod-emminex
- * Return: pointer to the resulting string dest
- */
+* _strcmp - compare string values
+* @s1: input value
+* @s2: input value
+*
+* Return: s1[i] - s2[i]
+*/
 
-char *_strncpy(char *dest, char *src, int n)
+int _strcmp(char *s1, char *s2)
 {
-int i;
+	int i;
 
-	for (i = 0; i < n && *(src + i); i++)
+	i = 0;
+	while (s1[i] != '\0' && s2[i] != '\0')
 	{
-		*(dest + i) = *(src + i);
+		if (s1[i] != s2[i])
+		{
+			return (s1[i] - s2[i]);
+		}
+		i++;
 	}
-	for (; i < n; i++)
-	{
-	*(dest + i) = '\0';
-	}
-	return (dest);
+	return (0);
 }
-
-
