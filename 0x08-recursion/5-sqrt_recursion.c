@@ -1,37 +1,44 @@
 #include "main.h"
-#include <math.h>
 
 /**
- * _sqrt_recursion2 - recursive function to find square root
- * @n: the number to find the square root of
- * @sqrt: current estimate of the square root
- * Return: the square root or -1 if not found
+ * _sqrt_recursion2 - fills memory with a constant byte.
+ * @n: first bytes of the memory
+ * @sqrt: first bytes of the memory
+ * @res: first bytes of the memory
+ * Return: -
  */
-float _sqrt_recursion2(int n, float sqrt)
+float _sqrt_recursion2(int n, float sqrt, float res)
 {
-    if (fabs(sqrt * sqrt - n) < 0.00001) {
-        return sqrt;
-    }
-
-    sqrt = 0.5 * (sqrt + n / sqrt);
-    return _sqrt_recursion2(n, sqrt);
+	if (sqrt == res)
+	{
+		if ((int)sqrt == sqrt)
+		{
+			return (sqrt);
+		}
+		else
+		{
+			return (-1);
+		}
+	}
+	res = sqrt;
+	sqrt = (n / res + res) / 2;
+	return (_sqrt_recursion2(n, sqrt, res));
 }
 
 /**
- * _sqrt_recursion - finds the square root of a number
- * @n: the number to find the square root of
- * Return: the square root or -1 if not found
+ * _sqrt_recursion - fills memory with a constant byte.
+ * @n: first bytes of the memory
+ * Return: -
  */
 int _sqrt_recursion(int n)
 {
-    if (n < 0) {
-        return -1;
-    }
+	float res, sqrt;
 
-    if (n == 0 || n == 1) {
-        return n;
-    }
-
-    float sqrt = (float)n / 2.0;
-    return (int)_sqrt_recursion2(n, sqrt);
+	sqrt = n / 2;
+	res = 0;
+	if (n == 1)
+		return (1);
+	if (n < 0)
+		return (-1);
+	return (_sqrt_recursion2(n, sqrt, res));
 }
