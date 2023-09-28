@@ -33,5 +33,3 @@ float _sqrt_recursion2(int n, float sqrt, float res)
 int _sqrt_recursion(int n)
 {
 	float res, sqrt;
-
-
