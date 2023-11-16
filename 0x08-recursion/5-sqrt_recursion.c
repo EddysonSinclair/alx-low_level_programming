@@ -18,14 +18,14 @@ return (-1);
 else
 {
 root++;
-return (_sqrt_recursion2(n, root));
+return (_sqrt_recursion_subs(n, root));
+}
 }
 /**
  * _sqrt_recursion - fills memory with a constant byte.
  * @n: first bytes of the memory
  * Return: -
  */
-
 int _sqrt_recursion(int n)
 {
 if (n < 0)
