@@ -7,7 +7,7 @@
  */
 int _sqrt_recursion_subs(int n, int root)
 {
-if (n == (root * root)
+if (n == (root * root))
 {
 return (root);
 }
@@ -19,7 +19,6 @@ else
 {
 root++;
 return (_sqrt_recursion2(n, root));
-}
 }
 /**
  * _sqrt_recursion - fills memory with a constant byte.
@@ -34,5 +33,5 @@ if (n < 0)
 return (-1);
 }
 else
-return (_sqrt_recursion2(n, 0));
+return (_sqrt_recursion_subs(n, 0));
 }
