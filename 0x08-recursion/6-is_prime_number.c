@@ -2,7 +2,7 @@
 /** Helper function to check for prime numbers (part 2)
  * This function recursively checks divisibility from 2 to stop-1.If it finds any divisor, it returns 0(not prime), otherwise returns 1 (prime).
  **/
-int is_prime_number2(int n,int stop, int i)
+int is_prime_number_2(int n,int stop, int i)
 {
 if (i >= stop)
 {
@@ -14,7 +14,7 @@ return (0);
 }
 else
 { 
-is_prime_number2(n, stop, i + 1);
+is_prime_number_2(n, stop, i + 1);
 }
 }
 /** Function to check if a number is prime
@@ -31,6 +31,6 @@ return (1);
 }
 else
 {
-return is_prime_number2(n, n/2, 2);
+return (is_prime_number_2(n, n/2, 2));
 }
 }
