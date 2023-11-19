@@ -16,6 +16,7 @@ else
 { 
 is_prime_number2(n, stop, i + 1);
 }
+}
 /** Function to check if a number is prime
 This function handles base cases and calls the helper function is_prime_number2.*/
 int is_prime_number(int n)
