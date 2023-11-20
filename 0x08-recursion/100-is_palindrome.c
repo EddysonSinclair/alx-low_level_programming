@@ -22,13 +22,26 @@ return (0);
 }
 }
 /**
+ * _strlen_recursion2 - fills memory with a constant byte.
+ * @s: first bytes of the memory
+ * Return: -
+ */
+int _strlen_recursion2(char *s)
+{
+	if (*s == '\0')
+	{
+		return (0);
+	}
+	return (_strlen_recursion2(s + 1) + 1);
+}
+/**
  *is_palindrome - fills memory with constant byte
  *@s: first bytes of the memory
  *Return: -
  */
 int is_palindrome(char *s)
 {
-int length = _strlen_recursion(s);
+int length = _strlen_recursion2(s);
 if (length == 0 || length == 1)
 {
 return (1);
