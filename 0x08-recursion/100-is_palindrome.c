@@ -28,7 +28,7 @@ return (0);
  */
 int is_palindrome(char *s)
 {
-int length = _strlen(s);
+int length = _strlen_recursions(s);
 if (length == 0 || length == 1)
 {
 return (1);
