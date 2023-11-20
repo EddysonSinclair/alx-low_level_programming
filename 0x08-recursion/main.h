@@ -12,5 +12,4 @@ int is_prime_number(int n);
 int is_prime_number2(int n,int i);
 int is_palindrome(char *s);
 int is_palindrome_wrapper(char *s, int left, int right);
-int _strlen(s);
 #endif
