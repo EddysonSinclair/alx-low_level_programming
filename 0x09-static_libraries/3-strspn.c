@@ -1,30 +1,29 @@
 #include "main.h"
 
 /**
-* _strspn - Entry point
-* @s: input
-* @accept: input
-* Return: Always 0 (Success)
-*/
-
+ * _strspn - fills memory with a constant byte.
+ * @s: first bytes of the memory
+ * @accept: constant byte b
+ * Return: pointer to the resulting string dests
+ */
 unsigned int _strspn(char *s, char *accept)
 {
-	unsigned int n = 0;
-	int r;
+	unsigned int i, j;
+	int notfound = 0;
 
-	while (*s)
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		for (r = 0; accept[r]; r++)
+		if (accept[i] == '\0')
+			break;
+		for (j = 0; accept[j] != '\0'; j++)
 		{
-			if (*s == accept[r])
-			{
-				n++;
+			if (s[i] == accept[j])
 				break;
-			}
-			else if (accept[r + 1] == '\0')
-				return (n);
+			if (accept[j + 1] == '\0')
+				notfound = 1;
 		}
-		s++;
+		if (notfound)
+			break;
 	}
-	return (n);
+	return (i);
 }
