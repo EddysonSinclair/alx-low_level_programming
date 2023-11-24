@@ -1,5 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+/**
+ * main - entry point
+ * @argc: character
+ * @argv: character
+ *
+ * Description: -
+ * Return: -
+ */
 int main(int argc, char *argv[])
 {
 int cents;
