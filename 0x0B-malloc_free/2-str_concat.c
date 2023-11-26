@@ -19,9 +19,9 @@ char *str_concat(char *s1, char *s2)
 	if (s1 == NULL && s2 == NULL)
 		return (NULL);
 	else if (s1 == NULL)
-		return (s2);
+		s1 = "";
 	else if (s2 == NULL)
-		return (s1);
+		s2 = "";
 	 length1 = strlen(s1);
 	 length2 = strlen(s2);
 	 total_length = length1 + length2;
