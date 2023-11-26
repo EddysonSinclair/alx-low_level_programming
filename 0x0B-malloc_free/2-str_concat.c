@@ -2,16 +2,26 @@
 #include "main.h"
 #include <string.h>
 /**
+ * str_concat - concatenates two strings.
+ * @s1: first string.
+ * @s2: second string.
+ *
+ * Return: pointer of an array of chars
  */
 char *str_concat(char *s1, char *s2)
 {
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
-	 int length1 = strlen(s1);
-	int length2 = strlen(s2);
-	int total_length = length1 + length2;
+
+	 int length1;
+	int length2;
+	int total_length;
 	unsigned int i;
 	char *ptr;
+
+	 length1 = strlen(s1);
+	 length2 = strlen(s2);
+	 total_length = length1 + length2;
 
 	ptr = (char *) malloc(sizeof(char) * (total_length + 2));
 	if (ptr == NULL)
