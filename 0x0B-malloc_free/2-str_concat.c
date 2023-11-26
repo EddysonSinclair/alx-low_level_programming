@@ -24,19 +24,11 @@ char *str_concat(char *s1, char *s2)
 	 length2 = strlen(s2);
 	 total_length = length1 + length2;
 
-	 if (total_length == 0)
-	 {
-		 ptr = (char *)malloc(1);
-		 if (ptr == NULL)
-			 return (NULL);
-		 ptr[0] = '\0';
-		 return ptr;
-	 }
-
 	ptr = (char *) malloc(sizeof(char) * (total_length + 1));
 
 	if (ptr == NULL)
-		return (NULL);
+		free(ptr);
+	return (NULL):
 
 	for (i = 0; i < length1; i++)
 		ptr[i] = s1[i];
