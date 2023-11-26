@@ -13,9 +13,9 @@ char *str_concat(char *s1, char *s2)
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
 
-	 int length1;
-	int length2;
-	int total_length;
+	unsigned int length1;
+	unsigned int length2;
+	unsigned int total_length;
 	unsigned int i;
 	char *ptr;
 
