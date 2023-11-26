@@ -17,9 +17,9 @@ char *str_concat(char *s1, char *s2)
 	char *ptr;
 
 	if (s1 == NULL)
-		return ("");
+		return (NULL);
 	if (s2 == NULL)
-		return ("");
+		return (NULL);
 	 length1 = strlen(s1);
 	 length2 = strlen(s2);
 	 total_length = length1 + length2;
@@ -36,6 +36,6 @@ char *str_concat(char *s1, char *s2)
 		ptr[i] = s1[i];
 	for (i = 0; i < length2; i++)
 		ptr[length1 + i] = s2[i];
-	ptr[total_length - 1] = '\0';
+	ptr[total_length] = '\0';
 	return (ptr);
 }
