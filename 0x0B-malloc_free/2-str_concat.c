@@ -32,7 +32,7 @@ char *str_concat(char *s1, char *s2)
 		return (NULL);
 	}
 	if (total_length == NULL)
-		return (NULL);
+		return (strdup(""));
 
 	for (i = 0; i < length1; i++)
 		ptr[i] = s1[i];
