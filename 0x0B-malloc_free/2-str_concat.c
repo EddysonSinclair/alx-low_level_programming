@@ -10,6 +10,7 @@
  */
 char *str_concat(char *s1, char *s2)
 {
+	unsigned int length1,length2,total_length;
 	char *ptr;
 
 	if (s1 == NULL)
