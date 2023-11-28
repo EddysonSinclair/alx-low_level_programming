@@ -13,20 +13,26 @@
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
 	char *ptr;
-	unsigned int length;
+	unsigned int length1, length2, total;
 
 	if (s1 == NULL)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
 
-	length = strlen(s1) + n + 1;
-	ptr = malloc(length);
+	length1 = strlen(s1);
+	length2 = strlen(s2);
+
+	if (n > length2)
+		n = length;
+	total = length1 + length2;
+
+	ptr = malloc(total + 1);
 
 	if (ptr == NULL)
 		return (NULL);
 
-	strncpy(ptr, s1);
+	strcpy(ptr, s1);
 
 	if (n >= strlen(s2))
 		strncat(ptr, s2, strlen(s2));
