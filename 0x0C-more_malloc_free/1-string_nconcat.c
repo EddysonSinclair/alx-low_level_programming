@@ -15,22 +15,23 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	char *ptr;
 	unsigned int length;
 
-	length = strlen(s1) + n + 1;
-
 	if (s1 == NULL)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
 
 	length = strlen(s1) + n + 1;
-	ptr = malloc(length + 1);
+	ptr = malloc(length);
 
 	if (ptr == NULL)
 		return (NULL);
+
 	strncpy(ptr, s1);
+
 	if (n >= strlen(s2))
 		strncat(ptr, s2, strlen(s2));
-	strncat(ptr, s2, n);
+	else
+		strncat(ptr, s2, n);
 
 	return (ptr);
 }
