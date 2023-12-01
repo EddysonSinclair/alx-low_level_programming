@@ -28,6 +28,8 @@ int main(int argc, char *argv[])
 	for (i = 0; i < bytes; i++)
 	{
 		printf("%02x", opcodes[i]);
+		if (i != bytes - 1)
+			printf(" ");
 	}
 	printf("\n");
 	return (0);
