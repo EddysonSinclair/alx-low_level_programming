@@ -5,8 +5,8 @@
  * print_strings - print strings.
  * @separator: string.
  * @n: int.
- * @...: variadic function.
- * Return - nothing.
+ * Description: variadic function.
+ * Return --
  */
 void print_strings(const char *separator, const unsigned int n, ...)
 {
