@@ -29,7 +29,7 @@ unsigned int binary_to_uint(const char *b)
 	{
 		c = c * 2 + (b[i] - '0');
 	}
-	return ((unsigned int)c);
+	return (c);
 
 
 }
