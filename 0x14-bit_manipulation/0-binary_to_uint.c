@@ -7,14 +7,15 @@
 
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned long int i;
-	unsigned long int c = 0;
-	unsigned long int length;
+	unsigned int i;
+	unsigned int c = 0;
+	unsigned int length = 0;
 
 	if (b == NULL)
 		return (0);
 
-	length = strlen(b);
+	for (; b[length] != '\0'; length++)
+		;
 
 	for (i = 0; i < length; i++)
 	{
