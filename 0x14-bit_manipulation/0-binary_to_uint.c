@@ -1,13 +1,11 @@
 #include "main.h"
 
 int mypower(int base, int exponent);
-
 /**
  * binary_to_uint - converts a binary to unsigned int.
  * @b: cont character variable.
  * Return: integer.
  */
-
 unsigned int binary_to_uint(const char *b)
 {
 	unsigned int i;
@@ -30,14 +28,12 @@ unsigned int binary_to_uint(const char *b)
 
 
 }
-
 /**
  * mypower - prints a number raised to power.
  * @base: this represents the base of num.
  * @exponent: this represents the exponential.
  * Return: integer
  */
-
 int mypower(int base, int exponent)
 {
 	unsigned int result = 1;
