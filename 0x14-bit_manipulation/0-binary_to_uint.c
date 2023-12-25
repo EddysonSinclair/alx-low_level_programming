@@ -1,4 +1,7 @@
 #include "main.h"
+
+int mypower(int base, int exponent);
+
 /**
  * binary_to_uint - converts a binary to unsigned int.
  * @b: cont character variable.
@@ -42,8 +45,7 @@ int mypower(int base, int exponent)
 
 	if (exponent < 0)
 	{
-		base = 1 / base;
-		exponent = -exponent;
+		return (0);
 	}
 
 	for (i = 0; i < exponent; i++)
