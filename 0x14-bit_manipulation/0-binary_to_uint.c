@@ -8,34 +8,47 @@
 unsigned int binary_to_uint(const char *b)
 {
 	unsigned int i;
-	unsigned int c, j, power;
-	unsigned int length;
+	unsigned int c, length;
 
-	c = 0;
-	power = 1;
-	if (b == NULL)
-		return (0);
-	c = 0;
 	length = 0;
+	c = 0;
 	if (b == NULL)
 		return (0);
-	for (length = 0; b[len] != '\0'; length++)
-		;
-	if (length == 1 && (b[0] == '0' || b[0] == '1'))
-		return (b[0] - 48);
 	for (i = 0; b[i] != '\0'; i++)
+		length++;
+	for (i = 0; i < length; i++)
 	{
-		if (b[i] != '0' && b[i] != '1')
+		if (b[i] != '1' && b[i] != '0')
 			return (0);
-		for (j = length - 1; j > 0; j--)
-		{
-			power = power * 2;
-			c = c + (power * (b[i] - 48));
-			length--;
-			power = 1;
-		}
+		c += (b[i] - '0') * mypower(2, length - i - 1);
+
 	}
 	return (c);
 
 
+}
+
+/**
+ * mypower - prints a number raised to power.
+ * @base: this represents the base of num.
+ * @exponent: this represents the exponential.
+ * Return: integer
+ */
+
+int mypower(int base, int exponent)
+{
+	unsigned int result = 1;
+	int i;
+
+	if (exponent < 0)
+	{
+		base = 1 / base;
+		exponent = -exponent;
+	}
+
+	for (i = 0; i < exponent; i++)
+	{
+		result *= base;
+	}
+	return (result);
 }
