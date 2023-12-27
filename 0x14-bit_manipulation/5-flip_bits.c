@@ -25,6 +25,7 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 unsigned int count_bit(unsigned long int number)
 {
 	unsigned int count = 0;
+
 	while (number != 0)
 	{
 		if ((number & 1) == 1)
