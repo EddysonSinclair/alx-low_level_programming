@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 /**
  * flip_bits - flip bits to convert one number to another number
  * @n: first number
