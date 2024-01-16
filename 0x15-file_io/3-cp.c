@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 		nchars = read(file_from, buff, 1024);
 		if (nchars == -1)
 			error_checker(-1, 0, argv);
-		nwr = write(file_to, buff, 1024);
+		nwr = write(file_to, buff, nchars);
 		if (nwr == -1)
 			error_checker(0, -1, argv);
 	}
