@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 /**
  * error_checker - checks if there is an error in any of the files
  * @file_from: source file
