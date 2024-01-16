@@ -1,19 +1,19 @@
 #include "main.h"
 /**
  * error_checker - checks if there is an error in any of the files
- * @file_from: source file
- * @file_to: destination file
+ * @file1: source file
+ * @file2: destination file
  * @argv: argument vector.
  * Return: void
  */
-void error_checker(int file_from, int file_to, char *argv[])
+void error_checker(int file1, int file2, char *argv[])
 {
-	if (file_from == -1)
+	if (file1 == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 		exit(98);
 	}
-	if (file_to == -1)
+	if (file2 == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv[2]);
 		exit(99);
