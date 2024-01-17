@@ -26,7 +26,7 @@ void error_checker(int file1, int file2, char *argv[])
  * main - main function.
  * @argc: arg count
  * @argv: arg vector
- * Return: 0.
+ * Return: integer.
  */
 
 int main(int argc, char *argv[])
