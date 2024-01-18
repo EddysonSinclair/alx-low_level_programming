@@ -50,10 +50,8 @@ int main(int argc, char *argv[])
 	while (nchars == 1024)
 	{
 		nchars = read(file_from, buff, 1024);
-		if (nchars == -1 || nwr < nchars)
-			error_checker(-1, -1, argv);
 		nwr = write(file_to, buff, nchars);
-		if (nwr == -1)
+		if (nchars == -1 || nwr == -1 || nwr != nchars)
 			error_checker(-1, -1, argv);
 	}
 
