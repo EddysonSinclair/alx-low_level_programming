@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 {
 	int file_from, file_to, error_case;
 	ssize_t nchars, nwr;
-	char *buff[1024];
+	char buff[1024];
 
 	if (argc != 3)
 	{
@@ -69,5 +69,4 @@ int main(int argc, char *argv[])
 		exit(100);
 	}
 	return (0);
-
 }
