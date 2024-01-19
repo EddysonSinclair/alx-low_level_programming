@@ -47,6 +47,7 @@ int main(int argc, char *argv[])
 	error_checker(file_from, file_to, argv);
 
 	buffer = create_buff(argv[2]);
+	nchars = 1;
 	while (nchars > 0)
 	{
 		nchars = read(file_from, buffer, 1024);
