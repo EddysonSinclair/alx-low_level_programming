@@ -1,11 +1,11 @@
 #include "main.h"
 #include <stdlib.h>
 /**
- * error_checker - checks if there is an error in any of the files
- * @file1: source file
- * @file2: destination file
+ * error_checker - checks if there is an error in any of the files.
+ * @file1: source file.
+ * @file2: destination file.
  * @argv: argument vector.
- * Return: void
+ * Return: void.
  */
 void error_checker(int file1, int file2, char *argv[])
 {
@@ -25,16 +25,16 @@ void error_checker(int file1, int file2, char *argv[])
 
 /**
  * main - main function.
- * @argc: arg count
- * @argv: arg vector
+ * @argc: arg count.
+ * @argv: arg vector.
  * Return: integer.
  */
 
 int main(int argc, char *argv[])
 {
-	int file_from, file_to, error_case;
+	int file_from, file_to;
 	ssize_t nchars, nwr;
-	char buff[1024];
+	char *buffer;
 
 	if (argc != 3)
 	{
@@ -46,28 +46,24 @@ int main(int argc, char *argv[])
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	error_checker(file_from, file_to, argv);
 
-	nchars = 1024;
-	while (nchars == 1024)
+	buffer = create_buff(argv[2]);
+	while (nchars > 0)
 	{
-		nchars = read(file_from, buff, 1024);
+		nchars = read(file_from, buffer, 1024);
 		if (nchars == -1)
+		{
 			error_checker(-1, file_to, argv);
-		nwr = write(file_to, buff, nchars);
-		if (nwr == -1 || nwr != nchars)
+			free(buffer);
+		}
+		nwr = write(file_to, buffer, nchars);
+		if (nwr == -1)
+		{
 			error_checker(file_from, -1, argv);
+			free(buffer);
+		}
 	}
-
-	error_case = close(file_from);
-	if (error_case == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
-		exit(100);
-	}
-	error_case = close(file_to);
-	if (error_case == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to);
-		exit(100);
-	}
+	free(buffer);
+	error_cases(file_from);
+	error_cases(file_to);
 	return (0);
 }
