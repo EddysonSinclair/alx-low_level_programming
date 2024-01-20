@@ -73,7 +73,7 @@ char *create_buff(char *file)
 int main(int argc, char *argv[])
 {
 	int file_from, file_to;
-	ssize_t nchars, nwr;
+	int nchars, nwr;
 	char *buffer;
 
 	if (argc != 3)
