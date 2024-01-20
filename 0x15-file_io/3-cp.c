@@ -88,14 +88,13 @@ int main(int argc, char *argv[])
 	}
 
 	file_from = open(argv[1], O_RDONLY);
+	buffer = create_buff(argv[2]);
+	nchars = read(file_from, buffer, 1024);
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	error_checker(file_from, file_to, argv);
 
-	buffer = create_buff(argv[2]);
-	nchars = 1;
 	while (nchars > 0)
 	{
-		nchars = read(file_from, buffer, 1024);
 		if (nchars == -1)
 		{
 			error_checker(-1, file_to, argv);
