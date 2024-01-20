@@ -21,6 +21,45 @@ void error_checker(int file1, int file2, char *argv[])
 
 }
 
+/**
+ * error_cases - its job is to close the files open in cases of no errors.
+ * @file: this is the file that is to be closed.
+ * Return: void.
+ */
+void error_cases(int file)
+{
+	int a;
+
+	a = close(file);
+
+	if (a == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close file %d\n", file);
+		exit(100);
+	}
+}
+
+
+/**
+ * create_buff - Allocates 1024 bytes for a buffer.
+ * @file: The name of the file buffer is storing chars for.
+ *
+ * Return: A pointer to the newly-allocated buffer.
+ */
+char *create_buff(char *file)
+{
+	char *buffer;
+
+	buffer = malloc(sizeof(char) * 1024);
+
+	if (buffer == NULL)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
+		exit(99);
+	}
+	return (buffer);
+}
+
 
 /**
  * main - main function.
