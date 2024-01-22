@@ -44,28 +44,6 @@ int error_cases(int file)
 	return (a);
 }
 
-
-/**
- * create_buff - Allocates 1024 bytes for a buffer.
- * @file: The name of the file buffer is storing chars for.
- *
- * Return: A pointer to the newly-allocated buffer.
- */
-char *create_buff(char *file)
-{
-	char *buffer;
-
-	buffer = malloc(sizeof(char) * 1024);
-
-	if (buffer == NULL)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
-		exit(99);
-	}
-	return (buffer);
-}
-
-
 /**
  * main - Copies the contents of a file to another file.
  * @argc: The number of arguments supplied to the program.
@@ -82,7 +60,7 @@ int main(int argc, char *argv[])
 {
 	int file_from, file_to;
 	int nchars, nwr;
-	char *buffer;
+	char buffer[1024];
 
 	if (argc != 3)
 	{
@@ -91,17 +69,16 @@ int main(int argc, char *argv[])
 	}
 
 	file_from = open(argv[1], O_RDONLY);
-	buffer = create_buff(argv[2]);
-	nchars = read(file_from, buffer, 1024);
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	error_checker(file_from, file_to, argv);
 
-	while (nchars > 0)
+	nchars = 1024;
+	while (nchars == 1024)
 	{
+		nchars = read(file_from, buffer, 1024);
 		if (nchars == -1)
 		{
 			error_checker(-1, file_to, argv);
-			free(buffer);
 			error_cases(file_from);
 			error_cases(file_to);
 		}
@@ -109,12 +86,10 @@ int main(int argc, char *argv[])
 		if (nwr == -1)
 		{
 			error_checker(file_from, -1, argv);
-			free(buffer);
 			error_cases(file_from);
 			error_cases(file_to);
 		}
 	}
-	free(buffer);
 	error_cases(file_from);
 	error_cases(file_to);
 	return (0);
