@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 	file_from = open(argv[1], O_RDONLY);
 	error_checker(file_from, 0, argv);
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	error_checker(file_from, 0, argv);
+	error_checker(0, file_to, argv);
 
 	nchars = 1024;
 	while (nchars == 1024)
