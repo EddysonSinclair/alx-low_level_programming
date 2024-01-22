@@ -8,7 +8,7 @@
  * @argv: argument vector.
  * Return: void.
  */
-void error_checker(int file1, int file2, char *argv[])
+int error_checker(int file1, int file2, char *argv[])
 {
 	if (file1 == -1)
 	{
@@ -21,6 +21,7 @@ void error_checker(int file1, int file2, char *argv[])
 		exit(99);
 	}
 
+	return (0);
 }
 
 /**
@@ -28,7 +29,7 @@ void error_checker(int file1, int file2, char *argv[])
  * @file: this is the file that is to be closed.
  * Return: void.
  */
-void error_cases(int file)
+int error_cases(int file)
 {
 	int a;
 
@@ -39,6 +40,8 @@ void error_cases(int file)
 		dprintf(STDERR_FILENO, "Error: Can't close file %d\n", file);
 		exit(100);
 	}
+
+	return (a);
 }
 
 
