@@ -99,12 +99,16 @@ int main(int argc, char *argv[])
 		{
 			error_checker(-1, file_to, argv);
 			free(buffer);
+			error_cases(file_from);
+			error_cases(file_to);
 		}
 		nwr = write(file_to, buffer, nchars);
 		if (nwr == -1)
 		{
 			error_checker(file_from, -1, argv);
 			free(buffer);
+			error_cases(file_from);
+			error_cases(file_to);
 		}
 	}
 	free(buffer);
