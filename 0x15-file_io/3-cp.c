@@ -1,56 +1,45 @@
 #include "main.h"
-#define BUF_SIZE 1024
-/**
- * error98_checker - checks if there is an error in any of the files.
- * @file1: source file.
- * @buffer: buffer size.
- * @argv: argument vector.
- * Return: void.
- */
-void error98_checker(int file1, char *buffer, char *argv)
-{
-	if (file1 < 0)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv);
-		free(buffer);
-		exit(98);
-	}
-}
+#include <stdio.h>
+#include <stdlib.h>
+
+char *create_buffer(char *file);
+void close_file(int fd);
 
 /**
- * error99_checker - checks if there is an error in any of the files.
- * @file2: source file.
- * @buffer: buffer size.
- * @argv: argument vector.
- * Return: void.
+ * create_buffer - Allocates 1024 bytes for a buffer.
+ * @file: The name of the file buffer is storing chars for.
+ *
+ * Return: A pointer to the newly-allocated buffer.
  */
-
-
-void error99_checker(int file2, char *buffer, char *argv)
+char *create_buffer(char *file)
 {
-	if (file2 < 0)
+	char *buffer;
+
+	buffer = malloc(sizeof(char) * 1024);
+
+	if (buffer == NULL)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv);
-		free(buffer);
+		dprintf(STDERR_FILENO,
+			"Error: Can't write to %s\n", file);
 		exit(99);
 	}
+
+	return (buffer);
 }
 
-
 /**
- * error_cases - its job is to close the files open in cases of no errors.
- * @file: this is the file that is to be closed.
- * Return: void.
+ * close_file - Closes file descriptors.
+ * @fd: The file descriptor to be closed.
  */
-void error_cases(int file)
+void close_file(int fd)
 {
-	int a;
+	int c;
 
-	a = close(file);
+	c = close(fd);
 
-	if (a < 0)
+	if (c == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close file %d\n", file);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 		exit(100);
 	}
 }
@@ -67,10 +56,9 @@ void error_cases(int file)
  *              If file_to cannot be created or written to - exit code 99.
  *              If file_to or file_from cannot be closed - exit code 100.
  */
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
-	int file_from, file_to;
-	ssize_t nchars, nwr;
+	int from, to, r, w;
 	char *buffer;
 
 	if (argc != 3)
@@ -78,29 +66,38 @@ int main(int argc, char **argv)
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	buffer = malloc(sizeof(char) * BUF_SIZE);
-	if (!buffer)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", buffer);
-		exit(99);
-	}
 
-	file_from = open(argv[1], O_RDONLY);
-	error98_checker(file_from, buffer, argv[1]);
-	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
-	error99_checker(file_to, buffer, argv[2]);
+	buffer = create_buffer(argv[2]);
+	from = open(argv[1], O_RDONLY);
+	r = read(from, buffer, 1024);
+	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 
-	while (nwr >= BUF_SIZE)
-	{
-		nchars = read(file_from, buffer, BUF_SIZE);
-		if (nchars == 0)
-			break;
-		error98_checker(nchars, buffer, argv[1]);
-		nwr = write(file_to, buffer, nchars);
-		error99_checker(file_to, buffer, argv[2]);
-	}
-	error_cases(file_from);
-	error_cases(file_to);
+	do {
+		if (from == -1 || r == -1)
+		{
+			dprintf(STDERR_FILENO,
+				"Error: Can't read from file %s\n", argv[1]);
+			free(buffer);
+			exit(98);
+		}
+
+		w = write(to, buffer, r);
+		if (to == -1 || w == -1)
+		{
+			dprintf(STDERR_FILENO,
+				"Error: Can't write to %s\n", argv[2]);
+			free(buffer);
+			exit(99);
+		}
+
+		r = read(from, buffer, 1024);
+		to = open(argv[2], O_WRONLY | O_APPEND);
+
+	} while (r > 0);
+
 	free(buffer);
+	close_file(from);
+	close_file(to);
+
 	return (0);
 }
