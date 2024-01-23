@@ -11,8 +11,7 @@ void error98_checker(int file1, char *buffer, char *argv)
 {
 	if (file1 < 0)
 	{
-		dprintf(STDERR_FILENO, 
-				"Error: Can't read from file %s\n", argv);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv);
 		free(buffer);
 		exit(98);
 	}
@@ -31,8 +30,7 @@ void error99_checker(int file2, char *buffer, char *argv)
 {
 	if (file2 < 0)
 	{
-		dprintf(STDERR_FILENO, 
-				"Error: Can't write to file %s\n", argv);
+		dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv);
 		free(buffer);
 		exit(99);
 	}
@@ -80,7 +78,7 @@ int main(int argc, char **argv)
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	buffer = (char *) malloc(sizeof(char) * BUF_SIZE);
+	buffer = malloc(sizeof(char) * BUF_SIZE);
 	if (!buffer)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", buffer);
