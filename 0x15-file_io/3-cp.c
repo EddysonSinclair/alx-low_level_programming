@@ -1,35 +1,48 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
+#define BUF_SIZE 1024
 /**
- * error_checker - checks if there is an error in any of the files.
+ * error98_checker - checks if there is an error in any of the files.
  * @file1: source file.
- * @file2: destination file.
+ * @buffer: buffer size.
  * @argv: argument vector.
  * Return: void.
  */
-int error_checker(int file1, int file2, char *argv[])
+void error98_checker(int file1, char *buffer, char *argv)
 {
-	if (file1 == -1)
+	if (file1 < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv);
+		free(buffer);
 		exit(98);
 	}
-	if (file2 == -1)
+}
+
+/**
+ * error99_checker - checks if there is an error in any of the files.
+ * @file2: source file.
+ * @buffer: buffer size.
+ * @argv: argument vector.
+ * Return: void.
+ */
+
+
+void error99_checker(int file2, char *buffer, char *argv)
+{
+	if (file2 < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv[2]);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv);
+		free(buffer);
 		exit(99);
 	}
-
-	return (0);
 }
+
 
 /**
  * error_cases - its job is to close the files open in cases of no errors.
  * @file: this is the file that is to be closed.
  * Return: void.
  */
-int error_cases(int file)
+void error_cases(int file)
 {
 	int a;
 
@@ -40,8 +53,6 @@ int error_cases(int file)
 		dprintf(STDERR_FILENO, "Error: Can't close file %d\n", file);
 		exit(100);
 	}
-
-	return (a);
 }
 
 /**
@@ -56,42 +67,37 @@ int error_cases(int file)
  *              If file_to cannot be created or written to - exit code 99.
  *              If file_to or file_from cannot be closed - exit code 100.
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 	int file_from, file_to;
-	int nchars, nwr;
-	char buffer[1024];
+	ssize_t nchars, nwr;
+	char *buffer;
 
 	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
+	buffer = (char *) malloc(sizeof(char) * BUF_SIZE);
+	if (!buffer)
+		return (0);
 
 	file_from = open(argv[1], O_RDONLY);
-	error_checker(file_from, 0, argv);
+	error98_checker(file_from, buffer, argv[1]);
 	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	error_checker(0, file_to, argv);
+	error99_checker(file_to, buffer, argv[2]);
 
-	nchars = 1024;
-	while (nchars == 1024)
+	while (nwr >= BUF_SIZE)
 	{
-		nchars = read(file_from, buffer, 1024);
-		if (nchars == -1)
-		{
-			error_checker(-1, file_to, argv);
-			error_cases(file_from);
-			error_cases(file_to);
-		}
+		nchars = read(file_from, buffer, BUF_SIZE);
+		if (nchars == 0)
+			break;
+		error98_checker(nchars, buffer, argv[1]);
 		nwr = write(file_to, buffer, nchars);
-		if (nwr == -1)
-		{
-			error_checker(file_from, -1, argv);
-			error_cases(file_from);
-			error_cases(file_to);
-		}
+		error99_checker(file_to, buffer, argv[2]);
 	}
 	error_cases(file_from);
 	error_cases(file_to);
+	free(buffer);
 	return (0);
 }
