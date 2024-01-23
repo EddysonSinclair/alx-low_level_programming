@@ -11,7 +11,8 @@ void error98_checker(int file1, char *buffer, char *argv)
 {
 	if (file1 < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv);
+		dprintf(STDERR_FILENO, 
+				"Error: Can't read from file %s\n", argv);
 		free(buffer);
 		exit(98);
 	}
@@ -30,7 +31,8 @@ void error99_checker(int file2, char *buffer, char *argv)
 {
 	if (file2 < 0)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", argv);
+		dprintf(STDERR_FILENO, 
+				"Error: Can't write to file %s\n", argv);
 		free(buffer);
 		exit(99);
 	}
