@@ -48,7 +48,7 @@ void error_cases(int file)
 
 	a = close(file);
 
-	if (a == -1)
+	if (a < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close file %d\n", file);
 		exit(100);
