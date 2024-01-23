@@ -79,7 +79,7 @@ int main(int argc, char **argv)
 		exit(97);
 	}
 	buffer = (char *) malloc(sizeof(char) * BUF_SIZE);
-	if (!buffer)
+	if (buffer == NULL) 
 		return (0);
 
 	file_from = open(argv[1], O_RDONLY);
