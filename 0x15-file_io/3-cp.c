@@ -79,8 +79,11 @@ int main(int argc, char **argv)
 		exit(97);
 	}
 	buffer = (char *) malloc(sizeof(char) * BUF_SIZE);
-	if (buffer == NULL) 
-		return (0);
+	if (!buffer)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", buffer);
+		exit(99);
+	}
 
 	file_from = open(argv[1], O_RDONLY);
 	error98_checker(file_from, buffer, argv[1]);
