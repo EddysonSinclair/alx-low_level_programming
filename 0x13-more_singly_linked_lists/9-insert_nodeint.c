@@ -1,49 +1,45 @@
 #include "lists.h"
+
 /**
- * insert_nodeint_at_index - used to insert a node at a particular index.
- * @head: pointer to the head.
- * @idx: index.
- * @n: number
- * Return: address of new node
+ * insert_nodeint_at_index - inserts a new node in a linked list,
+ * at a given position
+ * @head: pointer to the first node in the list
+ * @idx: index where the new node is added
+ * @n: data to insert in the new node
+ *
+ * Return: pointer to the new node, or NULL
  */
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-	unsigned int count;
-	listint_t *node;
-	listint_t *tmp;
+	unsigned int i;
+	listint_t *new;
+	listint_t *temp = *head;
 
-	count = 0;
-	node = malloc(sizeof(listint_t));
-
-	if (!node)
+	new = malloc(sizeof(listint_t));
+	if (!new || !head)
 		return (NULL);
 
-	if (*head == NULL)
-	{
-		*head = node;
-		return (node);
-	}
-	if (count == 0)
-	{
-		*head = node;
-		return (node);
-	}
-	node->n = n;
-	node->next = *head;
+	new->n = n;
+	new->next = NULL;
 
-	tmp = *head;
-	while (tmp != NULL)
+	if (idx == 0)
 	{
-		if (count == idx - 1)
+		new->next = *head;
+		*head = new;
+		return (new);
+	}
+
+	for (i = 0; temp && i < idx; i++)
+	{
+		if (i == idx - 1)
 		{
-			node->next = tmp->next;
-			tmp->next = node;
-			return (node);
-
+			new->next = temp->next;
+			temp->next = new;
+			return (new);
 		}
-		count++;
-		tmp = tmp->next;
+		else
+			temp = temp->next;
 	}
-	free(node);
+
 	return (NULL);
 }
