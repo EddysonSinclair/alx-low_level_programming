@@ -8,6 +8,7 @@ int sum_dlistint(dlistint_t *head)
 {
 	int sum;
 	int data;
+
 	sum = 0;
 
 	if (head == NULL)
